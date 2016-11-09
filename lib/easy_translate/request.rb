@@ -69,7 +69,7 @@ module EasyTranslate
 
     def configure_ssl(http)
       http.use_ssl      = true
-      http.verify_mode  = OpenSSL::SSL::VERIFY_NONE
+      http.verify_mode  = ENV['_system_name'] == 'OSX' ? OpenSSL::SSL::VERIFY_NONE : OpenSSL::SSL::VERIFY_PEER
       http.cert_store   = ssl_cert_store
 
       http.cert         = ssl_options[:client_cert]  if ssl_options[:client_cert]
